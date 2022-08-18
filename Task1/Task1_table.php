@@ -75,27 +75,61 @@ $counter = 0;
 <body>
 
 
-    <table style=" border-collapse: collapse">
-        <?php
-        for ($i = 0; $i < 3; $i++) {
-            # code...
-            foreach ($users[$i] as $key =>  $user) {
+    <table class="table">
+        <thead>
 
-        ?>
-                <tr>
-                    <?php echo $key . "---->   ";
-                    ?>
-                </tr>
-                <tr>
-                    <?php
-                    print_r($user) . ",";  ?>
-                </tr>
+            <tr>
+                <?php
+                foreach ($users[0] as $key => $user) {
+                ?>
+                    <th scope="col">
 
-        <?php
+                        <?php
+                        echo $key;
+                        ?>
+
+
+
+                    </th>
+                <?php
+                }
+                ?>
+            </tr>
+
+        </thead>
+        <tbody>
+
+            <?php
+            foreach ($users as $key => $user) { ?>
+                <th scope="row">
+                    <tr>
+                        <?php
+                        foreach ($user as $I => $item) { ?>
+                            <td>
+                            <?php
+                            if (gettype($item) == "array" || gettype($item) == "object") {
+                                foreach ($item as $k => $v) {
+                                    echo $v . "<br>";
+                                }
+                            } else {
+                                echo $item;
+                            }
+                        }
+                            ?>
+                            </td>
+
+
+
+                </th>
+                </tr>
+            <?php
                 echo "<br>";
-            }
-        }
-        ?>
+            } ?>
+            <!-- <td>Mark</td>
+               >Otto</td>
+                <td>@mdo> -->
+
+        </tbody>
     </table>
 
 
