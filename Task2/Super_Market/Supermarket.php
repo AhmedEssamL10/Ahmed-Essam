@@ -16,6 +16,7 @@ if (($_POST)) {
     if (isset($_POST['but2'])) {
         $result = 0;
         $delivery = 0;
+
         if ($_SESSION['num2'] == "Cairo") {
             $delivery = 0;
         } elseif ($_SESSION['num2'] == "Giza") {
@@ -29,13 +30,14 @@ if (($_POST)) {
         $price = $_POST["price"];
         $quantity = $_POST["quantity"];
 
-        for ($i = 1; $i <= $_SESSION['num3']; $i++) {
+        for ($i = 0; $i < $_SESSION['num3']; $i++) {
 
-            $result = $result  + ($price * $quantity);
+            $result = $result  + ($price[$i] * $quantity[$i]);
         }
         $result = $result + $delivery;
     }
 }
+
 ?>
 
 <head>
@@ -96,7 +98,7 @@ if (($_POST)) {
                                     <td>
                                         <div class="form-group">
                                             <label for="name">product name</label>
-                                            <input type="text" name="productname" id="name" class="form-control" aria-describedby="helpId">
+                                            <input type="text" name="productname[]" id="name" class="form-control" aria-describedby="helpId">
                                         </div>
                                     </td>
                                     <td>
@@ -104,7 +106,7 @@ if (($_POST)) {
                                             <label for="Phone">price </label>
                                             <?php
 
-                                            echo   "<input type='number' name='price' id='Phone' class='form-control' aria-describedby='helpId'>";
+                                            echo   "<input type='number' name='price[]' id='Phone' class='form-control' aria-describedby='helpId'>";
                                             ?>
                                         </div>
                                     </td>
@@ -113,7 +115,7 @@ if (($_POST)) {
                                             <label for="Phone">quantity </label>
                                             <?php
 
-                                            echo   "<input type='number' name='quantity' id='Phone' class='form-control' aria-describedby='helpId'>";
+                                            echo   "<input type='number' name='quantity[]' id='Phone' class='form-control' aria-describedby='helpId'>";
                                             ?>
                                             <!-- <input type="number" name="quantity" id="Phone" class="form-control" aria-describedby="helpId"> -->
                                         </div>
@@ -169,7 +171,10 @@ if (($_POST)) {
                                     echo "Total price After discount " . $result - $result * 0.2;
                                     echo "<br>";
                                 }
-                                echo "product name" . $productname;
+                                for ($i = 0; $i < $_SESSION['num3']; $i++) {
+                                    # code...
+                                    echo "product name " . $productname[$i] . " quantity " . $quantity[$i] . " price " . $price[$i];
+                                }
                             }
                             ?>
 
