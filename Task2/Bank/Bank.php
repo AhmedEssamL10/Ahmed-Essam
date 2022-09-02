@@ -4,9 +4,9 @@ if ($_POST) {
     $num2 = $_POST["num2"];
     $num3 = $_POST["num3"];
     if ($num3 <= 3) {
-        $result = $num2 + $num2 * 0.1;
+        $result = $num2 + ($num2 * 0.1) * $num3;
     } elseif ($num3 >= 3) {
-        $result = $num2 + $num2 * 0.15;
+        $result = $num2 + ($num2 * 0.15) * $num3;
     }
 }
 ?>
